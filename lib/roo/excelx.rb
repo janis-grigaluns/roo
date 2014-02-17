@@ -575,8 +575,11 @@ Datei xl/comments1.xml
             "#{tmpdir}/roo_sharedStrings.xml"
           elsif entry_name.end_with?('styles.xml')
             "#{tmpdir}/roo_styles.xml"
-          elsif entry_name =~ /sheet([0-9]+).xml$/
+          elsif entry_name =~ /sheet([0-9]+)?.xml$/
             nr = $1
+            if nr.blank?
+              nr = 1
+            end
             @sheet_files[nr.to_i-1] = "#{tmpdir}/roo_sheet#{nr}"
           elsif entry_name =~ /comments([0-9]+).xml$/
             nr = $1
